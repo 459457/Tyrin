@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>全新页面</title>
+<title>固定壁纸页面</title>
 <style>
 * {
     box-sizing: border-box;
@@ -22,39 +22,54 @@ html, body {
     top: 0;
     left: 0;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-    background-color: #f0f2f5;
+    /* 这里设置你固定的壁纸链接，你也可以换成你自己的图片网址 */
+    background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80');
+    background-size: cover;
+    background-position: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: center;
+    flex-direction: column;
 }
 
 .container {
     text-align: center;
     padding: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
 }
 
 h1 {
     color: #333;
+    font-size: 20px;
+    margin-bottom: 10px;
 }
 
-a {
+.btn {
     display: inline-block;
-    margin-top: 20px;
+    margin: 10px 5px;
     padding: 10px 20px;
     background-color: #007aff;
     color: white;
     text-decoration: none;
     border-radius: 10px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn:active {
+    opacity: 0.8;
 }
 </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>这是一个独立的新页面</h1>
-    <p>该页面已经应用了全屏适配代码。</p>
-    <a href="index.html">返回首页</a>
+    <h1>当前为固定壁纸</h1>
+    <p>背景图片已经锁定</p>
+    <a href="index.html" class="btn" style="background-color: #34c759;">返回首页</a>
 </div>
 
 </body>
