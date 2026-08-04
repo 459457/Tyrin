@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>固定壁纸页面</title>
+<title>固定壁纸</title>
 <style>
 * {
     box-sizing: border-box;
@@ -22,8 +22,7 @@ html, body {
     top: 0;
     left: 0;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-    /* 这里设置你固定的壁纸链接，你也可以换成你自己的图片网址 */
-    background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80');
+    background-color: #f0f2f5;
     background-size: cover;
     background-position: center;
     display: flex;
@@ -35,9 +34,10 @@ html, body {
 .container {
     text-align: center;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.85);
     border-radius: 15px;
     backdrop-filter: blur(10px);
+    max-width: 80%;
 }
 
 h1 {
@@ -46,9 +46,16 @@ h1 {
     margin-bottom: 10px;
 }
 
+p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
 .btn {
-    display: inline-block;
-    margin: 10px 5px;
+    display: block;
+    width: 100%;
+    margin: 10px 0;
     padding: 10px 20px;
     background-color: #007aff;
     color: white;
@@ -57,20 +64,61 @@ h1 {
     border: none;
     font-size: 16px;
     cursor: pointer;
+    text-align: center;
 }
 
 .btn:active {
     opacity: 0.8;
+}
+
+input[type="file"] {
+    display: none;
 }
 </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>当前为固定壁纸</h1>
-    <p>背景图片已经锁定</p>
+    <h1>已固定壁纸</h1>
+    <p>你可以随时更换或保持现状</p>
+    
+    <!-- 从相册选择的按钮 -->
+    <label class="btn">
+        更改壁纸
+        <input type="file" id="fileInput" accept="image/*" onchange="saveAndSetImage(event)">
+    </label>
+    
     <a href="index.html" class="btn" style="background-color: #34c759;">返回首页</a>
 </div>
+
+<script>
+    // 页面加载时，检查本地有没有保存过壁纸，如果有就自动显示
+    window.addEventListener('DOMContentLoaded', () => {
+        const savedWallpaper = localStorage.getItem('my_custom_wallpaper');
+        if (savedWallpaper) {
+            document.body.style.backgroundImage = `url('${savedWallpaper}')`;
+        }
+    });
+
+    function saveAndSetImage(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const base64Image = e.target.result;
+                // 设置为当前背景
+                document.body.style.backgroundImage = `url('${base64Image}')`;
+                // 保存到本地存储，这样下次打开就不会变了
+                try {
+                    localStorage.setItem('my_custom_wallpaper', base64Image);
+                } catch (err) {
+                    alert('图片太大，保存失败，请换一张小一点的图片。');
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+</script>
 
 </body>
 </html>
