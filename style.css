@@ -1,19 +1,21 @@
-*{
+* {
     box-sizing: border-box;
 }
 
 html, body {
     width: 100%;
     height: 100%;
-    height: 100dvh; /* 动态视口高度，适配移动端全屏 */
+    height: 100dvh;
     overflow: hidden;
     margin: 0;
     padding: 0;
-    position: fixed; /* 禁止页面整体橡皮筋滚动 */
+    position: fixed;
+    top: 0;
+    left: 0;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-#phone{
+#phone {
     width: 100vw;
     height: 100vh;
     height: 100dvh;
@@ -23,7 +25,7 @@ html, body {
 }
 
 /* 锁屏 */
-#lockScreen{
+#lockScreen {
     position: absolute;
     inset: 0;
     color: white;
@@ -33,16 +35,16 @@ html, body {
     z-index: 10;
 }
 
-#time{
+#time {
     font-size: 80px;
 }
 
-#date{
+#date {
     font-size: 20px;
 }
 
 /* 上滑解锁动画 */
-#unlock{
+#unlock {
     position: absolute;
     bottom: calc(50px + env(safe-area-inset-bottom));
     left: 50%;
@@ -53,68 +55,65 @@ html, body {
     animation: moveUp 1.5s infinite;
 }
 
-#unlock .arrow{
+#unlock::first-line {
     font-size: 30px;
 }
 
-@keyframes moveUp{
-    0%{ transform: translate(-50%, 0); }
-    50%{ transform: translate(-50%, -15px); }
-    100%{ transform: translate(-50%, 0); }
+@keyframes moveUp {
+    0% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, -15px); }
+    100% { transform: translate(-50%, 0); }
 }
 
 /* 桌面 */
-#home{
+#home {
     display: none;
     height: 100%;
     color: white;
     position: relative;
 }
 
-.status{
-    padding: calc(20px + env(safe-area-inset-top)) 20px 20px 20px;
+.status {
+    padding: 20px;
     display: flex;
     justify-content: space-between;
 }
 
-.apps{
+.apps {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 30px;
     padding: 40px;
 }
 
-.app{
+.app {
     text-align: center;
     font-size: 40px;
 }
 
-.app p{
+.app p {
     font-size: 14px;
-    margin-top: 5px;
 }
 
-/* 底栏 - 完美避开底部小黑条，防止被藏起或遮挡 */
-.dock{
+.dock {
     position: absolute;
-    bottom: calc(20px + env(safe-area-inset-bottom));
+    bottom: calc(30px + env(safe-area-inset-bottom));
     width: 90%;
     left: 5%;
-    padding: 20px;
+    padding: 15px;
     background: #ffffff55;
     border-radius: 30px;
     text-align: center;
     font-size: 35px;
-    backdrop-filter: blur(10px);
 }
 
 /* APP窗口 */
-#appWindow{
+#appWindow {
     display: none;
     position: absolute;
     inset: 0;
     background: white;
-    color: black;
-    padding: calc(40px + env(safe-area-inset-top)) 40px calc(40px + env(safe-area-inset-bottom)) 40px;
+    padding: 40px;
     z-index: 20;
+    color: black;
 }
