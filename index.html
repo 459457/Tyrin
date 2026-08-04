@@ -2,16 +2,13 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
-
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
+<meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Tyrin Phone">
 <title>Tyrin Phone</title>
-
 <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
@@ -20,101 +17,53 @@
 
     <!-- 锁屏 -->
     <div id="lockScreen">
-
         <div id="time">12:00</div>
-
-        <div id="date">
-            2026年8月4日
-<div id="unlock">
-    <div class="arrow">↑</div>
-    <div>上滑解锁</div>
-</div>
-
+        <div id="date">2026年8月4日</div>
+        <div id="unlock">
+            <div class="arrow">↑</div>
+            <div>上滑解锁</div>
+        </div>
+    </div>
 
     <!-- 桌面 -->
     <div id="home">
-
-
         <div class="status">
-
-            <span id="clock">
-                12:00
-            </span>
-
-            <span>
-                🔋100%
-            </span>
-
+            <span id="clock">12:00</span>
+            <span>🔋100%</span>
         </div>
 
-
-
         <div class="apps">
-
-
             <div class="app" onclick="openApp('聊天')">
                 💬
                 <p>聊天</p>
             </div>
-
-
             <div class="app" onclick="openApp('相册')">
                 🖼️
                 <p>相册</p>
             </div>
-
-
             <div class="app" onclick="openApp('音乐')">
                 🎵
                 <p>音乐</p>
             </div>
-
-
             <div class="app" onclick="openApp('设置')">
                 ⚙️
                 <p>设置</p>
             </div>
-
-
         </div>
-
-
 
         <div class="dock">
-
             📞　🌐　🎧
-
         </div>
-
-
     </div>
-
-
 
     <!-- APP窗口 -->
-
     <div id="appWindow">
-
-        <h2 id="appTitle">
-            
-        </h2>
-
-
-        <button onclick="closeApp()">
-            返回桌面
-        </button>
-
-
+        <h2 id="appTitle"></h2>
+        <button onclick="closeApp()">返回桌面</button>
     </div>
-
-
 
 </div>
 
-
-
 <script src="script.js"></script>
-
-
 </body>
 </html>
