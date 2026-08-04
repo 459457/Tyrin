@@ -76,3 +76,27 @@ function updateTime(){
 setInterval(updateTime,1000);
 
 updateTime();
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+
+body{
+    margin:0;
+    position:fixed;
+    top:0;
+    left:0;
+}
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+
+body{
+    margin:0;
+    position:fixed;
+    top:0;
+    left:0;
+}
