@@ -1,102 +1,119 @@
-let startY = 0;
-
-let unlock = document.getElementById("unlock");
-
-
-unlock.addEventListener("touchstart", function(e){
-
-    startY = e.touches[0].clientY;
-
-});
-
-
-unlock.addEventListener("touchend", function(e){
-
-    let endY = e.changedTouches[0].clientY;
-
-
-    if(startY - endY > 80){
-
-        document.getElementById("lockScreen").style.display="none";
-
-        document.getElementById("home").style.display="block";
-
-    }
-
-});
-
-
-
-// 打开APP
-
-function openApp(name){
-
-    document.getElementById("home").style.display="none";
-
-    document.getElementById("appWindow").style.display="block";
-
-    document.getElementById("appTitle").innerHTML=name;
-
+* {
+    box-sizing: border-box;
 }
 
-
-
-// 返回桌面
-
-function closeApp(){
-
-    document.getElementById("appWindow").style.display="none";
-
-    document.getElementById("home").style.display="block";
-
+html, body {
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-
-
-// 更新时间
-
-function updateTime(){
-
-    let d=new Date();
-
-    let t=
-    d.getHours()
-    +":"
-    +String(d.getMinutes()).padStart(2,"0");
-
-
-    document.getElementById("time").innerHTML=t;
-
-    document.getElementById("clock").innerHTML=t;
-
+#phone {
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    background: url("https://picsum.photos/900/1600") center/cover;
+    position: relative;
+    overflow: hidden;
 }
 
-
-
-setInterval(updateTime,1000);
-
-updateTime();
-html,body{
-    width:100%;
-    height:100%;
-    overflow:hidden;
+/* 锁屏 */
+#lockScreen {
+    position: absolute;
+    inset: 0;
+    color: white;
+    text-align: center;
+    padding-top: 180px;
+    backdrop-filter: blur(5px);
+    z-index: 10;
 }
 
-body{
-    margin:0;
-    position:fixed;
-    top:0;
-    left:0;
-}
-html,body{
-    width:100%;
-    height:100%;
-    overflow:hidden;
+#time {
+    font-size: 80px;
 }
 
-body{
-    margin:0;
-    position:fixed;
-    top:0;
-    left:0;
+#date {
+    font-size: 20px;
+}
+
+/* 上滑解锁动画 */
+#unlock {
+    position: absolute;
+    bottom: calc(50px + env(safe-area-inset-bottom));
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    animation: moveUp 1.5s infinite;
+}
+
+#unlock::first-line {
+    font-size: 30px;
+}
+
+@keyframes moveUp {
+    0% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, -15px); }
+    100% { transform: translate(-50%, 0); }
+}
+
+/* 桌面 */
+#home {
+    display: none;
+    height: 100%;
+    color: white;
+    position: relative;
+}
+
+.status {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.apps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    padding: 40px;
+}
+
+.app {
+    text-align: center;
+    font-size: 40px;
+}
+
+.app p {
+    font-size: 14px;
+}
+
+.dock {
+    position: absolute;
+    bottom: calc(30px + env(safe-area-inset-bottom));
+    width: 90%;
+    left: 5%;
+    padding: 15px;
+    background: #ffffff55;
+    border-radius: 30px;
+    text-align: center;
+    font-size: 35px;
+}
+
+/* APP窗口 */
+#appWindow {
+    display: none;
+    position: absolute;
+    inset: 0;
+    background: white;
+    padding: 40px;
+    z-index: 20;
+    color: black;
 }
