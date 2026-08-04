@@ -1,12 +1,33 @@
-document.getElementById("unlock").onclick = function(){
-
-    document.getElementById("lockScreen").style.display="none";
-
-    document.getElementById("home").style.display="block";
-
-};
+let startY = 0;
 
 
+// 上滑解锁
+
+document.addEventListener("touchstart", function(e){
+
+    startY = e.touches[0].clientY;
+
+});
+
+
+document.addEventListener("touchend", function(e){
+
+    let endY = e.changedTouches[0].clientY;
+
+
+    if(startY - endY > 100){
+
+        document.getElementById("lockScreen").style.display="none";
+
+        document.getElementById("home").style.display="block";
+
+    }
+
+});
+
+
+
+// 打开APP
 
 function openApp(name){
 
@@ -20,6 +41,8 @@ function openApp(name){
 
 
 
+// 返回桌面
+
 function closeApp(){
 
     document.getElementById("appWindow").style.display="none";
@@ -29,6 +52,8 @@ function closeApp(){
 }
 
 
+
+// 更新时间
 
 function updateTime(){
 
