@@ -1,21 +1,21 @@
 let startY = 0;
 
+let unlock = document.getElementById("unlock");
 
-// 上滑解锁
 
-document.addEventListener("touchstart", function(e){
+unlock.addEventListener("touchstart", function(e){
 
     startY = e.touches[0].clientY;
 
 });
 
 
-document.addEventListener("touchend", function(e){
+unlock.addEventListener("touchend", function(e){
 
     let endY = e.changedTouches[0].clientY;
 
 
-    if(startY - endY > 100){
+    if(startY - endY > 80){
 
         document.getElementById("lockScreen").style.display="none";
 
@@ -76,56 +76,3 @@ function updateTime(){
 setInterval(updateTime,1000);
 
 updateTime();
-/* 上滑解锁动画 */
-
-#unlock{
-
-    position:absolute;
-
-    bottom:50px;
-
-    left:50%;
-
-    transform:translateX(-50%);
-
-    color:white;
-
-    font-size:18px;
-
-    text-align:center;
-
-    animation:moveUp 1.5s infinite;
-
-}
-
-
-#unlock::first-line{
-
-    font-size:30px;
-
-}
-
-
-@keyframes moveUp{
-
-    0%{
-
-        transform:translate(-50%,0);
-
-    }
-
-
-    50%{
-
-        transform:translate(-50%,-15px);
-
-    }
-
-
-    100%{
-
-        transform:translate(-50%,0);
-
-    }
-
-}
